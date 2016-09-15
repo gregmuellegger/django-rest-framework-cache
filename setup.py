@@ -3,7 +3,7 @@ from setuptools import setup
 import rest_framework_cache
 
 
-github_url = "https://github.com/ervilis/django-rest-framework-cache/"
+github_url = "https://github.com/yupeek/django-rest-framework-cache/"
 
 setup(
     name="rest-framework-cache",
@@ -14,12 +14,10 @@ setup(
     license="GPLv3",
     keywords="rest_framework_cache",
     url=github_url,
-    packages=['rest_framework_cache', 'tests'],
-    namespace_packages=['rest_framework_cache'],
+    packages=['rest_framework_cache'],
     package_dir={'rest_framework_cache': 'rest_framework_cache'},
     download_url="{}/tarball/master".format(github_url),
     tests_require=["Django", "djangorestframework", "mock"],
-    test_suite='tests',
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Framework :: Django",
