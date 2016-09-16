@@ -27,6 +27,11 @@ INSTALLED_APPS = (
 
 This lib does not install any dependency, but your project obviously have to be using Django Rest Framework.
 
+# compatibility
+
+compatible with django 1.8, 1.9.
+python 2.7, 3.4, 3.5
+
 
 # Usage
 
