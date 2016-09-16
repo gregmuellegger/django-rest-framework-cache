@@ -1,8 +1,7 @@
 # django-rest-framework-cache
 
 [![Build Status](https://travis-ci.org/yupeek/django-rest-framework-cache.svg?branch=master)](https://travis-ci.org/Onyo/django-rest-framework-cache)
-[![coverageI](https://img.shields.io/coveralls/yupeek/rest-framework-cache/master.svg)](https://coveralls.io/r/yupeek/rest-framework-cache?branch=master)
-
+[![Coverage Status](https://coveralls.io/repos/github/Yupeek/django-rest-framework-cache/badge.svg?branch=master)](https://coveralls.io/github/Yupeek/django-rest-framework-cache?branch=master)
 
 DRF Cache provides easy to use, powerful and flexible cache framework for django-rest-framwork apps.
 
