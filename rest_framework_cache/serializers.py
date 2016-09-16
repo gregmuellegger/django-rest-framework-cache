@@ -1,6 +1,6 @@
 from rest_framework import serializers
-
 from rest_framework_cache.registry import CacheRegistry
+
 from .cache import get_cache
 from .settings import api_settings
 

@@ -16,7 +16,6 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.test.signals import setting_changed
 
-
 DEFAULTS = {
     'DEFAULT_CACHE_BACKEND': 'default',
     'DEFAULT_CACHE_TIMEOUT': 86400,

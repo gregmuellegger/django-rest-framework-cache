@@ -1,8 +1,11 @@
+from __future__ import unicode_literals
+
 import hashlib
 
 from django.db.models import signals
-
+from django.utils.six import text_type
 from rest_framework_cache.cache import get_cache
+
 from .exceptions import AlreadyRegistered
 
 
@@ -48,12 +51,12 @@ class CacheRegistry:
     @staticmethod
     def get_cache_key(instance, serializer):
         """Get cache key of instance"""
-        return hashlib.sha256(".".join(str(o) for o in (
+        return hashlib.sha256(".".join(text_type(o) for o in (
             instance.id,
             instance._meta.app_label,
             instance._meta.object_name,
             serializer.__name__
-        ))).hexdigest()
+        )).encode('utf-8')).hexdigest()
 
     def clear_instance(self, sender, instance, **kwargs):
         """Calls cache cleaner for current instance"""

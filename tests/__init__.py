@@ -26,4 +26,4 @@ def configure():
 configure()
 setup_test_environment()
 
-call_command('migrate')
+call_command('migrate', run_syncdb=True)
