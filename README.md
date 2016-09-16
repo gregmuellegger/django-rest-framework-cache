@@ -1,7 +1,8 @@
 # django-rest-framework-cache
 
-[![Current version at PyPI](https://img.shields.io/pypi/v/rest-framework-cache.svg)](https://pypi.python.org/pypi/rest-framework-cache)
-[![Build Status](https://travis-ci.org/Onyo/django-rest-framework-cache.svg?branch=master)](https://travis-ci.org/Onyo/django-rest-framework-cache)
+[![Build Status](https://travis-ci.org/yupeek/django-rest-framework-cache.svg?branch=master)](https://travis-ci.org/Onyo/django-rest-framework-cache)
+[![coverageI](https://img.shields.io/coveralls/yupeek/rest-framework-cache/master.svg)](https://coveralls.io/r/yupeek/rest-framework-cache?branch=master)
+
 
 DRF Cache provides easy to use, powerful and flexible cache framework for django-rest-framwork apps.
 
@@ -21,14 +22,6 @@ INSTALLED_APPS = (
 )
 ```
 
-You must execute autodiscover to load your serializers. To do this change your `urls.py` adding the following code (sunch as Django admin):
-
-```python
-from rest_framework_cache.registry import cache_registry
-
-cache_registry.autodiscover()
-```
-
 
 # Requirements
 
@@ -37,7 +30,12 @@ This lib does not install any dependency, but your project obviously have to be 
 
 # Usage
 
-To use the DRF cache you must register your serializer into cache registry ( such as Django admin ). You also must change your serializer to inherit the `CachedSerializerMixin`:
+To use the DRF cache you must register your serializer into cache 
+registry to make sure the cache will be invalidated if the 
+models is updated. 
+
+You also must change your serializer to inherit the `CachedSerializerMixin` 
+before the Serializer class:
 
 ```python
 from rest_framework import serializers
@@ -48,14 +46,12 @@ from rest_framework_cache.registry import cache_registry
 
 from .models import Comment
 
-
-class CommentSerializer(serializers.ModelSerializer, CachedSerializerMixin):
+@cache_registry.register
+class CommentSerializer(CachedSerializerMixin, serializers.ModelSerializer):
 
     class Meta:
         model = Comment
 
-
-cache_registry.register(CommentSerializer)
 ```
 
 # Configuration
@@ -63,7 +59,7 @@ cache_registry.register(CommentSerializer)
 To the cache successfully work you must configure the Django CACHES setting. We recomend that you take a look on Django cache docs here [https://docs.djangoproject.com/en/1.9/topics/cache/](https://docs.djangoproject.com/en/1.9/topics/cache/#setting-up-the-cache)
 
 
-## Using cache backend different of the default
+## Using a specific cache backend
 
 If you need use a cache backend different of the default you can specify it on the `RF_CACHE_BACKEND`.
 

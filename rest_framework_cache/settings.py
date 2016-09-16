@@ -39,30 +39,23 @@ class APISettings(object):
 
     def __init__(self, defaults=None):
         self.defaults = defaults
-        self.settings = getattr(settings, 'REST_FRAMEWORK_CACHE', {})
+        self._settings = {}
+        self.reload()
+
+    def reload(self):
+        self._settings = self.defaults.copy()
+        self._settings.update(getattr(settings, 'REST_FRAMEWORK_CACHE', {}))
 
     def __getattr__(self, attr):
-        if attr not in self.defaults:
-            raise AttributeError("Invalid API setting: '%s'" % attr)
-
-        try:
-            # Check if present in user settings
-            val = self.settings[attr]
-        except KeyError:
-            # Fall back to defaults
-            val = self.defaults[attr]
-
-        return val
+        return self._settings[attr]
 
 
 api_settings = APISettings(DEFAULTS)
 
 
-def reload_api_settings(*args, **kwargs):
-    global api_settings
-    setting, value = kwargs['setting'], kwargs['value']
+def reload_api_settings(setting, *args, **kwargs):
     if setting == 'REST_FRAMEWORK_CACHE':
-        api_settings = APISettings(DEFAULTS)
+        api_settings.reload()
 
 
 setting_changed.connect(reload_api_settings)

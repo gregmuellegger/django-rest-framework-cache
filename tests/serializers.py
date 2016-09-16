@@ -7,3 +7,8 @@ class TestSerializer(ModelSerializer):
 
     class Meta:
         model = TestModel
+
+
+class TestSerializer2(ModelSerializer):
+    class Meta:
+        model = TestModel
