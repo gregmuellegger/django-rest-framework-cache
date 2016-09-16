@@ -1,9 +1,6 @@
-import pkg_resources
+# __author__ = 'Ervilis Souza'
+# __email__ = 'ervilisviana@gmail.com'
+__author__ = 'Darius BERNARD'
+__email__ = 'darius@yupeek.com'
 
-
-__author__ = 'Ervilis Souza'
-__email__ = 'ervilisviana@gmail.com'
-__version__ = '0.1'
-
-
-pkg_resources.declare_namespace(__name__)
+__version__ = '1.0'
