@@ -13,14 +13,15 @@ class CacheRegistry:
     def __init__(self):
         self._registry = {}
 
-    def register(self, serializer):
+    def register(self, serializer, model=None):
         """Store the serializer and model on registry to that the cache can be
         cleaned whenever an object is changed or deleted.
         After the serializer is registered we must connect the signals that
         clear the instance cache.
         can be used as a decorator
         """
-        model = serializer.Meta.model
+        if model is None:
+            model = serializer.Meta.model
 
         if model not in self._registry:
             self._registry[model] = []
